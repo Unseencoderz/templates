@@ -1,12 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for, send_from_directory, make_response
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
-import os
-
 
 app = Flask(__name__)
-app.static_folder = 'static'
-app.config['UPLOAD_FOLDER'] = 'uploads'
 
 # Set up MongoDB Atlas connection (replace with your connection string)
 uri = "mongodb+srv://unseencoderz:mongo%402213591@cluster0.pfkqmli.mongodb.net/?retryWrites=true&w=majority"
@@ -14,7 +10,6 @@ client = MongoClient(uri, server_api=ServerApi('1'))
 db = client.get_database("studentdata")
 
 allowed_email_domains = ['gmail.com', 'yahoo.com', 'outlook.com']
-
 
 @app.route('/')
 def index():
@@ -30,7 +25,7 @@ def submit():
     domain = email.split('@')[-1]
 
     if domain not in allowed_email_domains:
-        return "Invalid email type. Only Gmail,Yahoo and Outlook are allowed. "
+        return "Invalid email type. Only Gmail, Yahoo, and Outlook are allowed."
 
     collection = db['mycollection']
     data = {'name': name, 'email': email}
@@ -38,7 +33,7 @@ def submit():
 
     return redirect(url_for('index'))
 
-@app.route('/uploads/<filename>', methods=['GET'])
+@app.route('/downloads/<filename>', methods=['GET'])
 def download_file(filename):
     # Retrieve data from MongoDB
     collection = db['mycollection']
