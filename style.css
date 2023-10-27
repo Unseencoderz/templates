@@ -1,0 +1,36 @@
+
+/* Apply styles to the form container */
+Form{
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fbfbfb;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+}
+
+/* Style form labels */
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* Style text inputs */
+input[type="text"],
+input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+/* Style submit button */
+input[type="submit"] {
+    background-color: #007BFF;
+    color: #861d1d;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
