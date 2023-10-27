@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, send_from_directory, make_response
+from flask import Flask, render_template, request, redirect, make_response
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 
@@ -31,9 +31,13 @@ def submit():
     data = {'name': name, 'email': email}
     collection.insert_one(data)
 
-    return redirect(url_for('index'))
+    return redirect('/')
 
-@app.route('/downloads/<filename>', methods=['GET'])
+@app.route('/style.css')
+def serve_css():
+    return app.send_static_file('style.css')
+
+@app.route('/uploads/<filename>', methods=['GET'])
 def download_file(filename):
     # Retrieve data from MongoDB
     collection = db['mycollection']
